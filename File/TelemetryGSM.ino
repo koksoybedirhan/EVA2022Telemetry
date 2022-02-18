@@ -76,7 +76,7 @@ void loop() {
 
         delay(100);
         i++;
-        if(i == 30){
+        if(i == 1){
           client.flush();
         }
     }
