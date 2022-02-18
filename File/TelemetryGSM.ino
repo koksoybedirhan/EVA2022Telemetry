@@ -23,6 +23,7 @@ int port = 3000;
 long result;
 boolean notConnected = true;
 boolean serverConnection = false;
+int i = 0;
 
 StaticJsonBuffer<3000> jsonBuffer;
 JsonObject& object = jsonBuffer.createObject();
@@ -54,7 +55,7 @@ void loop() {
     }
 
     if (client.connected()) {
-        delay(600);
+        delay(100);
 
         Serial.println(Serial.readString());
 
@@ -73,8 +74,10 @@ void loop() {
         client.println();
         object.printTo(client);
 
-        delay(700);
-
-        Serial.println("Veri uçuyo");
+        delay(100);
+        i++;
+        if(i == 30){
+          client.flush();
+        }
     }
 }
