@@ -31,7 +31,7 @@
 #define MaxHucre1 199
 #define MinHucre2 10
 
-String value = ",";
+String value = "_";
 
 void setup() {
     Serial.begin(9600);
@@ -44,29 +44,24 @@ void loop() {
     long a;
     long b;
     long c;
-    long d;
+    String d = "$GNGGA,151209.000,4103.45377,N,02849.24715,E,1,10,1.7,95.2,M,37.1,M,,*76";
     long e;
     long f;
     long g;
     long h;
     long j;
+    String z = "11_22_33_$GNGGA,151209.000,4103.45377,N,02849.24715,E,1,10,1.7,95.2,M,37.1,M,,*76_55_66";
 
     for (int i = 1; i > 0; ++i) {
-        a = rand() % MaxHiz + MinHiz;
-        b = rand() % MaxVolt + MinVolt;
-        c = rand() % MaxBatarya + MinBatarya;
-        d = rand() % MaxMotorSicaklik + MinMotorSicaklik;
-        e = rand() % MaxBataryaSicaklik + MinBataryaSicaklik;
-        f = rand() % MaxLokasyon + MinLokasyon;
-        g = rand() % MaxHucreSicaklik + MinHucreSicaklik;
-        h = rand() % MaxHucreBatarya + MinHucreBatarya;
-        j = rand() % MaxHucreBatarya + MinHucreBatarya;
+        a++;
+        b++;
+        c++;
+        e++;
+        f++;
+        
+        Serial.print(a + value + b + value + c + value + d + value + e + value + f);
 
-        Serial.print(a + value + b + value + c + value + d + value + e + value + f + value + g + value + h);
-
-        digitalWrite(13, HIGH);
-        delay(1000);
-        digitalWrite(13, LOW);
-        delay(1000);
+        delay(1500);
+        
     }
 }
