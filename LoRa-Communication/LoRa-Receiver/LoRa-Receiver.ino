@@ -16,7 +16,7 @@ void setup()
 typedef struct {
 byte sicaklik1[5];
 byte hiz[5];
-byte volt[5];
+byte volt[7];
 byte enerji[5];
 byte sicaklik2[5];
 byte sicaklik3[5];
@@ -27,9 +27,7 @@ void loop()
 {
   if (e32ttl.available()  > 1){
     ResponseStructContainer rsc = e32ttl.receiveMessage(sizeof(Signal));
-    rocket = *(Signal*) rsc.data;7
-    //Veriler arasına "," konularak ayrıştırma kolaylaştırılmaktadır.
-    // "/" son verinin geldiğini bildirmektedir.
+    rocket = *(Signal*) rsc.data;
     Serial.print(*(float*)rocket.hiz,1);
     Serial.print(value);
     Serial.print(*(float*)rocket.volt,1);
