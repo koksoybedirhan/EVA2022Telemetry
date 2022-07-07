@@ -1,56 +1,45 @@
 #include "Arduino.h"
 #include "LoRa_E32.h"
 #include <SoftwareSerial.h>
-SoftwareSerial mySerial(10, 11);
-LoRa_E32 e32ttl(&mySerial);
+SoftwareSerial loraSerial(10, 11);
+LoRa_E32 e32ttl(&loraSerial);
+String value = ",";
 
 void setup()
 {
   Serial.begin(9600);
-  while (!Serial) 
-  {
-      ;
-  }
   delay(100);
   e32ttl.begin();
   Serial.println();
+
 }
 typedef struct {
-byte altitude[5];
-byte latitude[10];
-byte longtitude[10];
-byte hiz[3];
-byte volt[3];
-byte enerji[3];
-byte sicaklik1[3];
-byte sicaklik2[3];
-byte sicaklik3[3];
+byte sicaklik1[5];
+byte hiz[5];
+byte volt[5];
+byte enerji[5];
+byte sicaklik2[5];
+byte sicaklik3[5];
 } Signal;
-Signal data;
+Signal rocket;
 
 void loop()
 {
   if (e32ttl.available()  > 1){
     ResponseStructContainer rsc = e32ttl.receiveMessage(sizeof(Signal));
-    data = *(Signal*) rsc.data;
-    Serial.print(*(float*)data.altitude,1);
-    Serial.print(" ");
-    Serial.print(*(float*)data.latitude,6);
-    Serial.print(" ");
-    Serial.print(*(float*)data.longtitude,6);
-    Serial.print(" ");
-    Serial.print(*(int*)data.hiz);
-    Serial.print(" ");
-    Serial.print(*(int*)data.volt);
-    Serial.print(" ");
-    Serial.print(*(int*)data.enerji);
-    Serial.print(" ");
-    Serial.print(*(int*)data.sicaklik1);
-    Serial.print(" ");
-    Serial.print(*(int*)data.sicaklik2);
-    Serial.print(" ");
-    Serial.print(*(int*)data.sicaklik3);
-    Serial.println(" ");
+    rocket = *(Signal*) rsc.data;
+    Serial.print(*(float*)rocket.hiz,1);
+    Serial.print(value);
+    Serial.print(*(float*)rocket.volt,1);
+    Serial.print(value);
+    Serial.print(*(float*)rocket.enerji,1);
+    Serial.print(value);
+    Serial.print(*(float*)rocket.sicaklik1,1);
+    Serial.print(value);
+    Serial.print(*(float*)rocket.sicaklik2,1);
+    Serial.print(value);
+    Serial.print(*(float*)rocket.sicaklik3,1);
+    Serial.println("/");
     rsc.close();
   }
 }
