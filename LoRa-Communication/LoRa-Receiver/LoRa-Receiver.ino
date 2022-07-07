@@ -27,7 +27,9 @@ void loop()
 {
   if (e32ttl.available()  > 1){
     ResponseStructContainer rsc = e32ttl.receiveMessage(sizeof(Signal));
-    rocket = *(Signal*) rsc.data;
+    rocket = *(Signal*) rsc.data;7
+    //Veriler arasına "," konularak ayrıştırma kolaylaştırılmaktadır.
+    // "/" son verinin geldiğini bildirmektedir.
     Serial.print(*(float*)rocket.hiz,1);
     Serial.print(value);
     Serial.print(*(float*)rocket.volt,1);
