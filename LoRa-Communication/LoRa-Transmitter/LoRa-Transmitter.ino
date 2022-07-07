@@ -41,7 +41,7 @@ void loop()
   *(float*)(data.enerji) = enerjifloat;
   *(float*)(data.sicaklik2) = sicaklik2float;
   *(float*)(data.sicaklik3) = sicaklik3float;
-  /*while(Serial2.available())
+  /*while(Serial2.available()) //Eğer GPS kullanılacaksa burası aktif edilecek.
   {
     if(gps.encode(Serial2.read()))
     {
