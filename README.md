@@ -1,4 +1,7 @@
 # EVA2022Telemetry
+
+Author: b1d0
+
 EVA Team 2022 Telemetry Codes
 Vehicle Control System card = Arduino Mega 2560 R3
 Telemetry Card = Arduino Mega 2560 R3
